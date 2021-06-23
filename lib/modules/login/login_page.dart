@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:pay_flow/modules/login/login_controller.dart';
 import 'package:pay_flow/shared/themes/app_colors.dart';
 import 'package:pay_flow/shared/themes/app_images.dart';
 import 'package:pay_flow/shared/themes/app_text_styles.dart';
 import 'package:pay_flow/widgets/social_login_button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _controller = LoginController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -52,9 +59,7 @@ class LoginPage extends StatelessWidget {
                   Padding(
                     padding:
                         const EdgeInsets.only(top: 40, left: 40, right: 40),
-                    child: SocialLoginButton(
-                      onTap: () {},
-                    ),
+                    child: SocialLoginButton(onTap: _controller.googleSignIn),
                   ),
                 ],
               ),
@@ -62,22 +67,6 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-      // body: Container(
-      //   child: Column(
-      //     children: [
-      //       Container(
-      //         height: 316,
-      //         width: double.maxFinite,
-      //         color: AppColors.primary,
-      //       ),
-      //       Center(
-      //         child: Image.asset(AppImages.person),
-      //       ),
-      //       Center(child: Image.asset(AppImages.logomini)),
-      //       Center(child: Text("Texto")),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
