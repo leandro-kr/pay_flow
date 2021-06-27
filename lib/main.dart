@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:pay_flow/app_widget.dart';
 
 void main() {
-  runApp(AppWidget());
+  runApp(AppFirebase());
 }
 
-class AppFireBase extends StatefulWidget {
-  const AppFireBase({Key? key}) : super(key: key);
+class AppFirebase extends StatefulWidget {
+  const AppFirebase({Key? key}) : super(key: key);
 
   @override
-  _AppFireBaseState createState() => _AppFireBaseState();
+  _AppFirebaseState createState() => _AppFirebaseState();
 }
 
-class _AppFireBaseState extends State<AppFireBase> {
+class _AppFirebaseState extends State<AppFirebase> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
