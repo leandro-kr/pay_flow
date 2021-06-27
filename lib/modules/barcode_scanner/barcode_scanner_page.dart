@@ -21,6 +21,11 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   @override
   void initState() {
     controller.getAvailableCameras();
+    controller.statusNotifier.addListener(() {
+      if (controller.status.hasBarcode) {
+        Navigator.pushReplacementNamed(context, '/insert_boleto');
+      }
+    });
     super.initState();
   }
 
@@ -32,14 +37,6 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
 
   @override
   Widget build(BuildContext context) {
-    // return BottomSheetWidget(
-    //   title: "Não foi possível identificar um código de barras.",
-    //   subTitle: "Tente escanear novamente ou digite o código do seu boleto.",
-    //   primaryLabel: "Escanear novamente",
-    //   primaryOnPressed: () {},
-    //   secondaryLabel: "Digitar código",
-    //   secondaryOnPressed: () {},
-    // );
     return SafeArea(
       top: true,
       bottom: true,
@@ -101,6 +98,26 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                 secondaryOnPressed: () {},
               ),
             ),
+          ),
+          ValueListenableBuilder<BarcodeScannerStatus>(
+            valueListenable: controller.statusNotifier,
+            builder: (_, status, __) {
+              if (status.hasError) {
+                return BottomSheetWidget(
+                  title: "Não foi possível identificar um código de barras.",
+                  subTitle:
+                      "Tente escanear novamente ou digite o código do seu boleto.",
+                  primaryLabel: "Escanear novamente",
+                  primaryOnPressed: () {
+                    controller.getAvailableCameras();
+                  },
+                  secondaryLabel: "Digitar código",
+                  secondaryOnPressed: () {},
+                );
+              } else {
+                return Container();
+              }
+            },
           ),
         ],
       ),
