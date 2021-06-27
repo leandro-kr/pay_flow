@@ -3,7 +3,7 @@ import 'package:pay_flow/modules/login/login_controller.dart';
 import 'package:pay_flow/shared/themes/app_colors.dart';
 import 'package:pay_flow/shared/themes/app_images.dart';
 import 'package:pay_flow/shared/themes/app_text_styles.dart';
-import 'package:pay_flow/widgets/social_login_button.dart';
+import 'package:pay_flow/widgets/social_login_button/social_login_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
